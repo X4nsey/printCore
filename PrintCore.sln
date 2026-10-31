@@ -1,0 +1,72 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.UI", "src\PrintCore.UI\PrintCore.UI.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.Core", "src\PrintCore.Core\PrintCore.Core.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.Logging", "src\PrintCore.Logging\PrintCore.Logging.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.Data", "src\PrintCore.Data\PrintCore.Data.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.DriverCatalog", "src\PrintCore.DriverCatalog\PrintCore.DriverCatalog.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.LocalDriverCatalog", "src\PrintCore.LocalDriverCatalog\PrintCore.LocalDriverCatalog.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.OnlineDriverCatalog", "src\PrintCore.OnlineDriverCatalog\PrintCore.OnlineDriverCatalog.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.DriverDownloader", "src\PrintCore.DriverDownloader\PrintCore.DriverDownloader.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.DriverInstaller", "src\PrintCore.DriverInstaller\PrintCore.DriverInstaller.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintCore.DeviceDiscovery", "src\PrintCore.DeviceDiscovery\PrintCore.DeviceDiscovery.csproj", "{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C03F9A-6E5C-4D3E-8E8B-1B5A0A7E9D10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>PrintCore.DriverDownloader</RootNamespace>
+    <AssemblyName>PrintCore.DriverDownloader</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrintCore.Core\PrintCore.Core.csproj" />
+    <ProjectReference Include="..\PrintCore.DriverCatalog\PrintCore.DriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.LocalDriverCatalog\PrintCore.LocalDriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.Logging\PrintCore.Logging.csproj" />
+  </ItemGroup>
+</Project>

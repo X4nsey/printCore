@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>PrintCore.Core</RootNamespace>
+    <AssemblyName>PrintCore.Core</AssemblyName>
+  </PropertyGroup>
+</Project>

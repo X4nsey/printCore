@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>PrintCore.OnlineDriverCatalog</RootNamespace>
+    <AssemblyName>PrintCore.OnlineDriverCatalog</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrintCore.Core\PrintCore.Core.csproj" />
+    <ProjectReference Include="..\PrintCore.Data\PrintCore.Data.csproj" />
+    <ProjectReference Include="..\PrintCore.DriverCatalog\PrintCore.DriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.Logging\PrintCore.Logging.csproj" />
+  </ItemGroup>
+</Project>

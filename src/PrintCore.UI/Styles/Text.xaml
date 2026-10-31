@@ -1,0 +1,88 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Текстовые стили. Неявный стиль TextBlock намеренно не задаёт цвет,
+        чтобы текст внутри кнопок и пунктов меню наследовал Foreground родителя.
+    -->
+
+    <Style x:Key="Text.Base" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource Font.Text}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Body}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Primary}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Заголовок приветствия -->
+    <Style x:Key="Text.Hero" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontFamily" Value="{DynamicResource Font.Display}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Hero}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Заголовок раздела в верхней панели -->
+    <Style x:Key="Text.PageTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontFamily" Value="{DynamicResource Font.Display}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.PageTitle}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Заголовок блока / карточки -->
+    <Style x:Key="Text.CardTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Subtitle}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Подзаголовок -->
+    <Style x:Key="Text.Subtitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.BodyLarge}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Secondary}" />
+    </Style>
+
+    <!-- Основной текст -->
+    <Style x:Key="Text.Body" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}" />
+
+    <Style x:Key="Text.BodyStrong" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Второстепенный текст -->
+    <Style x:Key="Text.Secondary" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Secondary}" />
+    </Style>
+
+    <!-- Пояснения, подписи -->
+    <Style x:Key="Text.Caption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Caption}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Tertiary}" />
+    </Style>
+
+    <!-- Подпись группы пунктов бокового меню -->
+    <Style x:Key="Text.NavGroup" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Caption}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Margin" Value="12,0,0,8" />
+    </Style>
+
+    <!-- Подпись поля / метрики -->
+    <Style x:Key="Text.Label" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Body}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Secondary}" />
+    </Style>
+
+    <!-- Числовое значение в карточке статистики -->
+    <Style x:Key="Text.Metric" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Base}">
+        <Setter Property="FontFamily" Value="{DynamicResource Font.Display}" />
+        <Setter Property="FontSize" Value="{DynamicResource FontSize.Metric}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <!-- Многострочный абзац -->
+    <Style x:Key="Text.Paragraph" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Text.Secondary}">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="None" />
+        <Setter Property="LineHeight" Value="19" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>PrintCore</RootNamespace>
+    <AssemblyName>PrintCore</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Description>Обнаружение принтеров, поиск и установка драйверов</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrintCore.Core\PrintCore.Core.csproj" />
+    <ProjectReference Include="..\PrintCore.Logging\PrintCore.Logging.csproj" />
+    <ProjectReference Include="..\PrintCore.Data\PrintCore.Data.csproj" />
+    <ProjectReference Include="..\PrintCore.DriverCatalog\PrintCore.DriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.LocalDriverCatalog\PrintCore.LocalDriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.OnlineDriverCatalog\PrintCore.OnlineDriverCatalog.csproj" />
+    <ProjectReference Include="..\PrintCore.DriverDownloader\PrintCore.DriverDownloader.csproj" />
+    <ProjectReference Include="..\PrintCore.DriverInstaller\PrintCore.DriverInstaller.csproj" />
+    <ProjectReference Include="..\PrintCore.DeviceDiscovery\PrintCore.DeviceDiscovery.csproj" />
+  </ItemGroup>
+
+</Project>

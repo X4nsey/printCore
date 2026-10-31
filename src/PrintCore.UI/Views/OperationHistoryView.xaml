@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="PrintCore.Views.OperationHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:PrintCore.Controls"
+             xmlns:converters="clr-namespace:PrintCore.Converters">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <ScrollViewer Style="{DynamicResource PageScrollViewer}">
+        <StackPanel MaxWidth="1360">
+
+            <!-- Панель фильтрации журнала -->
+            <Border Margin="{DynamicResource Margin.SectionGap}"
+                    Padding="20,16"
+                    Style="{DynamicResource Card}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,10,0" Style="{DynamicResource Text.Label}" Text="Тип:" />
+                        <Button Command="{Binding SetKindFilterCommand}" CommandParameter="All" Content="Все" Padding="10,0" />
+                        <Button Margin="6,0,0,0" Command="{Binding SetKindFilterCommand}" CommandParameter="Discovery" Content="Обнаружение" Padding="10,0" />
+                        <Button Margin="6,0,0,0" Command="{Binding SetKindFilterCommand}" CommandParameter="Search" Content="Поиск драйвера" Padding="10,0" />
+                        <Button Margin="6,0,0,0" Command="{Binding SetKindFilterCommand}" CommandParameter="Download" Content="Загрузки" Padding="10,0" />
+                        <Button Margin="6,0,0,0" Command="{Binding SetKindFilterCommand}" CommandParameter="Install" Content="Установки" Padding="10,0" />
+                        <Button Margin="6,0,0,0" Command="{Binding SetKindFilterCommand}" CommandParameter="Error" Content="Ошибки" Padding="10,0" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Command="{Binding ClearCommand}"
+                            Content="Очистить журнал"
+                            controls:Assist.Icon="{DynamicResource Icon.Trash}" />
+                </Grid>
+            </Border>
+
+            <!-- Основная сетка: таблица операций + подробности выбранной операции -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{DynamicResource Card.Flush}">
+                    <Grid MinHeight="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <DataGrid Grid.Row="0"
+                                  ItemsSource="{Binding FilteredRecords}"
+                                  SelectedItem="{Binding SelectedRecord, Mode=TwoWay}"
+                                  Style="{DynamicResource DataTable}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="0.9*"
+                                                    Binding="{Binding TimeText}"
+                                                    ElementStyle="{DynamicResource DataTable.CellTextSecondary}"
+                                                    Header="Дата и время" />
+                                <DataGridTextColumn Width="0.95*"
+                                                    Binding="{Binding KindText}"
+                                                    ElementStyle="{DynamicResource DataTable.CellTextSecondary}"
+                                                    Header="Тип операции" />
+                                <DataGridTextColumn Width="1.8*"
+                                                    Binding="{Binding Title}"
+                                                    ElementStyle="{DynamicResource DataTable.CellText}"
+                                                    Header="Операция" />
+                                <DataGridTemplateColumn Width="0.9*" Header="Результат">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <controls:StatusBadge Text="{Binding ResultText}"
+                                                                  Tone="{Binding ResultTone}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <controls:EmptyState Grid.Row="1"
+                                             Description="Записи об обнаружении принтеров, поиске, загрузке и установке драйверов сохраняются в SQLite автоматически."
+                                             Icon="{DynamicResource Icon.History}"
+                                             Title="Записи не найдены"
+                                             Visibility="{Binding HasRecords, Converter={StaticResource BoolToVis}, ConverterParameter=Invert}" />
+                    </Grid>
+                </Border>
+
+                <!-- Подробности выбранной операции -->
+                <Border Grid.Column="2" Style="{DynamicResource Card}">
+                    <Grid>
+                        <controls:EmptyState Description="Выберите запись в таблице слева для просмотра подробных сведений об операции."
+                                             Icon="{DynamicResource Icon.Activity}"
+                                             Title="Запись не выбрана"
+                                             Visibility="{Binding HasSelectedRecord, Converter={StaticResource BoolToVis}, ConverterParameter=Invert}" />
+
+                        <StackPanel Visibility="{Binding HasSelectedRecord, Converter={StaticResource BoolToVis}}">
+                            <controls:StatusBadge Text="{Binding SelectedRecord.ResultText}"
+                                                  Tone="{Binding SelectedRecord.ResultTone}" />
+                            <TextBlock Margin="0,10,0,4"
+                                       Style="{DynamicResource Text.CardTitle}"
+                                       Text="{Binding SelectedRecord.Title}"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Margin="0,0,0,12"
+                                       Style="{DynamicResource Text.Caption}"
+                                       Text="{Binding SelectedRecord.FullTimeText}" />
+
+                            <Border Style="{DynamicResource Divider}" />
+
+                            <TextBlock Margin="0,12,0,4" Style="{DynamicResource Text.Label}" Text="Категория" />
+                            <TextBlock Style="{DynamicResource Text.Body}" Text="{Binding SelectedRecord.KindText}" />
+
+                            <TextBlock Margin="0,12,0,4" Style="{DynamicResource Text.Label}" Text="Целевое устройство / модель" />
+                            <TextBlock Style="{DynamicResource Text.Body}" Text="{Binding SelectedRecord.TargetDevice, TargetNullValue='Не указано'}" />
+
+                            <TextBlock Margin="0,12,0,4" Style="{DynamicResource Text.Label}" Text="Подробности выполнения" />
+                            <Border Margin="0,4,0,0" Style="{DynamicResource Surface.Subtle}">
+                                <TextBlock Style="{DynamicResource Text.Paragraph}"
+                                           Text="{Binding SelectedRecord.Details, TargetNullValue='Дополнительные сведения отсутствуют.'}" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

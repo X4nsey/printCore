@@ -1,0 +1,351 @@
+﻿<UserControl x:Class="PrintCore.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:PrintCore.Controls"
+             xmlns:converters="clr-namespace:PrintCore.Converters">
+    <UserControl.Resources>
+        <converters:StringToVisibilityConverter x:Key="StrToVis" />
+    </UserControl.Resources>
+
+    <ScrollViewer Style="{DynamicResource PageScrollViewer}">
+        <StackPanel MaxWidth="960">
+
+            <!-- 1. Оформление: переключатель темы -->
+            <Border Margin="{DynamicResource Margin.SectionGap}" Style="{DynamicResource Card}">
+                <StackPanel>
+                    <Grid Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Style="{DynamicResource IconTile}">
+                            <controls:Icon Data="{DynamicResource Icon.Palette}" />
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Text.CardTitle}"
+                                       Text="Тема оформления" />
+                            <TextBlock Margin="0,3,0,0"
+                                       Style="{DynamicResource Text.Caption}"
+                                       Text="Выберите внешний вид интерфейса. Настройка сохраняется автоматически между запусками." />
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Три карточки выбора темы с мини-превью -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Светлая тема -->
+                        <RadioButton Grid.Column="0"
+                                     GroupName="ThemeSelection"
+                                     IsChecked="{Binding IsLightTheme, Mode=TwoWay}"
+                                     Style="{DynamicResource OptionCard}">
+                            <StackPanel>
+                                <Border Height="78"
+                                        Background="#F4F5F7"
+                                        BorderBrush="#E3E6EA"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Padding="8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="38" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Background="#FBFBFC" BorderBrush="#E3E6EA" BorderThickness="0,0,1,0" CornerRadius="3,0,0,3" Padding="5">
+                                            <StackPanel>
+                                                <Border Width="14" Height="6" HorizontalAlignment="Left" Background="#2563EB" CornerRadius="2" />
+                                                <Border Height="5" Margin="0,6,0,0" Background="#EAEFF9" CornerRadius="2" />
+                                                <Border Height="5" Margin="0,4,0,0" Background="#E5E8EC" CornerRadius="2" />
+                                            </StackPanel>
+                                        </Border>
+                                        <StackPanel Grid.Column="1" Margin="8,2,2,2">
+                                            <Border Height="16" Background="#FFFFFF" BorderBrush="#E3E6EA" BorderThickness="1" CornerRadius="3" />
+                                            <Grid Margin="0,6,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="4" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0" Height="28" Background="#FFFFFF" BorderBrush="#E3E6EA" BorderThickness="1" CornerRadius="3" />
+                                                <Border Grid.Column="2" Height="28" Background="#FFFFFF" BorderBrush="#E3E6EA" BorderThickness="1" CornerRadius="3" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                                    <controls:Icon Width="16" Height="16" Data="{DynamicResource Icon.Sun}" />
+                                    <TextBlock Margin="8,0,0,0" Style="{DynamicResource Text.BodyStrong}" Text="Светлая" />
+                                </StackPanel>
+                                <TextBlock Margin="0,3,0,0" Style="{DynamicResource Text.Caption}" Text="Чистый светлый интерфейс" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Тёмная тема -->
+                        <RadioButton Grid.Column="2"
+                                     GroupName="ThemeSelection"
+                                     IsChecked="{Binding IsDarkTheme, Mode=TwoWay}"
+                                     Style="{DynamicResource OptionCard}">
+                            <StackPanel>
+                                <Border Height="78"
+                                        Background="#16181C"
+                                        BorderBrush="#2C3037"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Padding="8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="38" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Background="#1B1E23" BorderBrush="#2C3037" BorderThickness="0,0,1,0" CornerRadius="3,0,0,3" Padding="5">
+                                            <StackPanel>
+                                                <Border Width="14" Height="6" HorizontalAlignment="Left" Background="#3B7BF0" CornerRadius="2" />
+                                                <Border Height="5" Margin="0,6,0,0" Background="#1D2A40" CornerRadius="2" />
+                                                <Border Height="5" Margin="0,4,0,0" Background="#2A2E35" CornerRadius="2" />
+                                            </StackPanel>
+                                        </Border>
+                                        <StackPanel Grid.Column="1" Margin="8,2,2,2">
+                                            <Border Height="16" Background="#1F2227" BorderBrush="#2C3037" BorderThickness="1" CornerRadius="3" />
+                                            <Grid Margin="0,6,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="4" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0" Height="28" Background="#1F2227" BorderBrush="#2C3037" BorderThickness="1" CornerRadius="3" />
+                                                <Border Grid.Column="2" Height="28" Background="#1F2227" BorderBrush="#2C3037" BorderThickness="1" CornerRadius="3" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                                    <controls:Icon Width="16" Height="16" Data="{DynamicResource Icon.Moon}" />
+                                    <TextBlock Margin="8,0,0,0" Style="{DynamicResource Text.BodyStrong}" Text="Тёмная" />
+                                </StackPanel>
+                                <TextBlock Margin="0,3,0,0" Style="{DynamicResource Text.Caption}" Text="Приглушённые графитовые тона" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <!-- Системная тема -->
+                        <RadioButton Grid.Column="4"
+                                     GroupName="ThemeSelection"
+                                     IsChecked="{Binding IsSystemTheme, Mode=TwoWay}"
+                                     Style="{DynamicResource OptionCard}">
+                            <StackPanel>
+                                <Border Height="78"
+                                        BorderBrush="{DynamicResource Brush.Border.Default}"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        ClipToBounds="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="#F4F5F7" Padding="8">
+                                            <StackPanel>
+                                                <Border Width="22" Height="6" HorizontalAlignment="Left" Background="#2563EB" CornerRadius="2" />
+                                                <Border Height="16" Margin="0,8,0,0" Background="#FFFFFF" BorderBrush="#E3E6EA" BorderThickness="1" CornerRadius="3" />
+                                                <Border Height="22" Margin="0,6,0,0" Background="#FFFFFF" BorderBrush="#E3E6EA" BorderThickness="1" CornerRadius="3" />
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1" Background="#16181C" Padding="8">
+                                            <StackPanel>
+                                                <Border Width="22" Height="6" HorizontalAlignment="Left" Background="#3B7BF0" CornerRadius="2" />
+                                                <Border Height="16" Margin="0,8,0,0" Background="#1F2227" BorderBrush="#2C3037" BorderThickness="1" CornerRadius="3" />
+                                                <Border Height="22" Margin="0,6,0,0" Background="#1F2227" BorderBrush="#2C3037" BorderThickness="1" CornerRadius="3" />
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                                    <controls:Icon Width="16" Height="16" Data="{DynamicResource Icon.Monitor}" />
+                                    <TextBlock Margin="8,0,0,0" Style="{DynamicResource Text.BodyStrong}" Text="Как в системе" />
+                                </StackPanel>
+                                <TextBlock Margin="0,3,0,0" Style="{DynamicResource Text.Caption}" Text="Следует настройкам Windows" />
+                            </StackPanel>
+                        </RadioButton>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- 2. Настройка папки локальной библиотеки драйверов -->
+            <Border Margin="{DynamicResource Margin.SectionGap}" Style="{DynamicResource Card}">
+                <StackPanel>
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Style="{DynamicResource IconTile}">
+                            <controls:Icon Data="{DynamicResource Icon.Package}" />
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="14,0,16,0" VerticalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Text.CardTitle}"
+                                       Text="Папка локальной библиотеки драйверов" />
+                            <TextBlock Margin="0,3,0,0"
+                                       Style="{DynamicResource Text.Caption}"
+                                       Text="Каталог на диске, где хранятся загруженные и импортированные пакеты драйверов" />
+                        </StackPanel>
+
+                        <Button Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Command="{Binding BrowseLibraryFolderCommand}"
+                                Content="Изменить папку…"
+                                controls:Assist.Icon="{DynamicResource Icon.Folder}" />
+                    </Grid>
+
+                    <TextBox Text="{Binding LibraryDirectory, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </Border>
+
+            <!-- 3. Параметры поиска принтеров -->
+            <Border Margin="{DynamicResource Margin.SectionGap}" Style="{DynamicResource Card}">
+                <StackPanel>
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Style="{DynamicResource IconTile}">
+                            <controls:Icon Data="{DynamicResource Icon.Scan}" />
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Text.CardTitle}"
+                                       Text="Параметры обнаружения устройств" />
+                            <TextBlock Margin="0,3,0,0"
+                                       Style="{DynamicResource Text.Caption}"
+                                       Text="Настройка протоколов, ограниченного диапазона сети и тайм-аутов" />
+                        </StackPanel>
+                    </Grid>
+
+                    <WrapPanel Margin="0,0,0,14">
+                        <CheckBox Margin="0,0,28,10"
+                                  Content="Поиск USB-принтеров (WMI / PnP)"
+                                  IsChecked="{Binding ScanUsb, Mode=TwoWay}"
+                                  Style="{DynamicResource ToggleSwitch}" />
+                        <CheckBox Margin="0,0,28,10"
+                                  Content="Поиск сетевых принтеров"
+                                  IsChecked="{Binding ScanNetwork, Mode=TwoWay}"
+                                  Style="{DynamicResource ToggleSwitch}" />
+                        <CheckBox Margin="0,0,28,10"
+                                  Content="Опрос по SNMP v1"
+                                  IsChecked="{Binding EnableSnmp, Mode=TwoWay}"
+                                  Style="{DynamicResource ToggleSwitch}" />
+                        <CheckBox Margin="0,0,0,10"
+                                  Content="Проверка TCP 9100 / 631"
+                                  IsChecked="{Binding EnableTcpProbe, Mode=TwoWay}"
+                                  Style="{DynamicResource ToggleSwitch}" />
+                    </WrapPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.6*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Margin="0,0,0,4" Style="{DynamicResource Text.Label}" Text="Диапазон IPv4 (напр. 192.168.1.10-50, пусто — авто)" />
+                            <TextBox Text="{Binding NetworkRange, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Margin="0,0,0,4" Style="{DynamicResource Text.Label}" Text="Тайм-аут опроса (мс)" />
+                            <TextBox Text="{Binding NetworkTimeoutMs, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="4">
+                            <TextBlock Margin="0,0,0,4" Style="{DynamicResource Text.Label}" Text="Макс. узлов за проход" />
+                            <TextBox Text="{Binding MaxScanHosts, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                        <Button Command="{Binding SaveSearchSettingsCommand}"
+                                Content="Сохранить параметры"
+                                Style="{DynamicResource Button.Primary}"
+                                controls:Assist.Icon="{DynamicResource Icon.Check}" />
+                        <Button Margin="10,0,0,0"
+                                Command="{Binding OpenDataFolderCommand}"
+                                Content="Открыть папку данных и БД SQLite"
+                                controls:Assist.Icon="{DynamicResource Icon.Folder}" />
+                        <TextBlock Margin="14,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Style="{DynamicResource Text.Caption}"
+                                   Text="{Binding SaveFeedback}"
+                                   Visibility="{Binding SaveFeedback, Converter={StaticResource StrToVis}}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- 4. Сведения о системе и приложении -->
+            <Border Style="{DynamicResource Card}">
+                <StackPanel>
+                    <TextBlock Style="{DynamicResource Text.CardTitle}"
+                               Text="О системе и приложении" />
+                    <TextBlock Margin="0,3,0,14"
+                               Style="{DynamicResource Text.Caption}"
+                               Text="Сведения о рабочей станции и среде выполнения (совместимость: Windows 7 SP1 / 8 / 8.1 / 10 / 11)" />
+
+                    <Border Style="{DynamicResource Divider}" />
+
+                    <Grid Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="32" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Версия PrintCore" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Text.BodyStrong}" Text="{Binding AppVersion}" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Компьютер" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SystemInfo.MachineName}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Пользователь" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SystemInfo.UserName}" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Операционная система" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Style="{DynamicResource Text.Body}">
+                            <Run Text="{Binding SystemInfo.OsName, Mode=OneWay}" />
+                            <Run Text=" (" /><Run Text="{Binding SystemInfo.OsBuild, Mode=OneWay}" /><Run Text=", " /><Run Text="{Binding SystemInfo.Architecture, Mode=OneWay}" /><Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Платформа" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SystemInfo.FrameworkVersion}" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Папка данных и SQLite" />
+                        <TextBlock Grid.Row="5" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding DataDirectory}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:PrintCore.Controls"
+                    xmlns:converters="clr-namespace:PrintCore.Converters"
+                    xmlns:models="clr-namespace:PrintCore.Models;assembly=PrintCore.Core"
+                    xmlns:vm="clr-namespace:PrintCore.ViewModels">
+
+    <!-- Переиспользуемые шаблоны данных дизайн-системы PrintCore -->
+
+    <converters:ResourceKeyConverter x:Key="Converter.ResourceKey" />
+    <converters:BoolToVisibilityConverter x:Key="Converter.BoolToVisibility" />
+    <converters:StringToVisibilityConverter x:Key="Converter.StringToVisibility" />
+    <converters:DriverStatusToTextConverter x:Key="Converter.DriverStatusToText" />
+    <converters:DriverStatusToToneConverter x:Key="Converter.DriverStatusToTone" />
+    <converters:OperationKindToIconConverter x:Key="Converter.OperationKindToIcon" />
+
+    <!-- Карточка статистики (StatCardViewModel) -->
+    <DataTemplate DataType="{x:Type vm:StatCardViewModel}">
+        <Border Style="{DynamicResource Card}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock Style="{DynamicResource Text.Label}" Text="{Binding Title}" />
+
+                    <!-- Реальное числовое значение -->
+                    <TextBlock Margin="0,8,0,0"
+                               Style="{DynamicResource Text.Metric}"
+                               Text="{Binding Value}"
+                               Visibility="{Binding HasValue, Converter={StaticResource Converter.BoolToVisibility}}" />
+
+                    <!-- Состояние «Нет данных» / «Загрузка…» -->
+                    <TextBlock Margin="0,12,0,4"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource Brush.Text.Secondary}"
+                               Style="{DynamicResource Text.Base}"
+                               Text="{Binding Value}"
+                               Visibility="{Binding HasValue, Converter={StaticResource Converter.BoolToVisibility}, ConverterParameter=Invert}" />
+
+                    <TextBlock Margin="0,4,0,0"
+                               Style="{DynamicResource Text.Caption}"
+                               Text="{Binding Caption}" />
+                </StackPanel>
+
+                <Border Grid.Column="1" Margin="12,0,0,0" Style="{DynamicResource IconTile}">
+                    <controls:Icon Data="{Binding IconKey, Converter={StaticResource Converter.ResourceKey}}" />
+                </Border>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <!-- Карточка запланированной возможности (PlannedFeature) -->
+    <DataTemplate DataType="{x:Type vm:PlannedFeature}">
+        <Border Margin="0,0,0,10" Style="{DynamicResource Surface.Subtle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Style="{DynamicResource IconTile}">
+                    <controls:Icon Data="{Binding IconKey, Converter={StaticResource Converter.ResourceKey}}" />
+                </Border>
+
+                <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Style="{DynamicResource Text.BodyStrong}" Text="{Binding Title}" />
+                    <TextBlock Margin="0,3,0,0" Style="{DynamicResource Text.Paragraph}" Text="{Binding Description}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <!-- Строка журнала операций (OperationRecord) -->
+    <DataTemplate DataType="{x:Type models:OperationRecord}">
+        <Border Style="{DynamicResource OperationRow}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="IconBox" Width="32" Height="32" CornerRadius="8"
+                        Background="{DynamicResource Brush.Accent.Subtle}"
+                        TextElement.Foreground="{DynamicResource Brush.Accent.Text}">
+                    <controls:Icon Width="16" Height="16"
+                                   Data="{Binding Kind, Converter={StaticResource Converter.OperationKindToIcon}}" />
+                </Border>
+
+                <StackPanel Grid.Column="1" Margin="12,0,12,0" VerticalAlignment="Center">
+                    <TextBlock Style="{DynamicResource Text.BodyStrong}" Text="{Binding Title}" />
+                    <TextBlock Margin="0,2,0,0"
+                               Style="{DynamicResource Text.Secondary}"
+                               Text="{Binding Details}"
+                               Visibility="{Binding Details, Converter={StaticResource Converter.StringToVisibility}}" />
+                </StackPanel>
+
+                <TextBlock Grid.Column="2"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource Text.Caption}"
+                           Text="{Binding TimeText}" />
+            </Grid>
+        </Border>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsError}" Value="True">
+                <Setter TargetName="IconBox" Property="Background" Value="{DynamicResource Brush.Danger.Subtle}" />
+                <Setter TargetName="IconBox" Property="TextElement.Foreground" Value="{DynamicResource Brush.Danger}" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+</ResourceDictionary>

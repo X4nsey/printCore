@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>PrintCore.DeviceDiscovery</RootNamespace>
+    <AssemblyName>PrintCore.DeviceDiscovery</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="ReachFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrintCore.Core\PrintCore.Core.csproj" />
+    <ProjectReference Include="..\PrintCore.Logging\PrintCore.Logging.csproj" />
+  </ItemGroup>
+</Project>

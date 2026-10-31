@@ -1,0 +1,183 @@
+﻿<UserControl x:Class="PrintCore.Views.InstalledPrintersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:PrintCore.Controls"
+             xmlns:converters="clr-namespace:PrintCore.Converters">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <ScrollViewer Style="{DynamicResource PageScrollViewer}">
+        <StackPanel MaxWidth="1360">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Таблица установленных принтеров -->
+                <Border Grid.Column="0" Style="{DynamicResource Card.Flush}">
+                    <Grid MinHeight="440">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Шапка -->
+                        <Grid Grid.Row="0" Margin="20,18,20,14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Style="{DynamicResource Text.CardTitle}"
+                                           Text="Очереди печати Windows" />
+                                <TextBlock Margin="0,3,0,0"
+                                           Style="{DynamicResource Text.Caption}"
+                                           Text="{Binding StatusText}" />
+                            </StackPanel>
+
+                            <Button Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding RefreshCommand}"
+                                    Content="Обновить"
+                                    controls:Assist.Icon="{DynamicResource Icon.Refresh}" />
+                        </Grid>
+
+                        <!-- Содержимое -->
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <DataGrid Grid.Row="0"
+                                      ItemsSource="{Binding Printers}"
+                                      SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}"
+                                      Style="{DynamicResource DataTable}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="1.45*"
+                                                        Binding="{Binding Name}"
+                                                        ElementStyle="{DynamicResource DataTable.CellText}"
+                                                        Header="Название принтера" />
+                                    <DataGridTextColumn Width="1.25*"
+                                                        Binding="{Binding DriverName}"
+                                                        ElementStyle="{DynamicResource DataTable.CellTextSecondary}"
+                                                        Header="Используемый драйвер" />
+                                    <DataGridTextColumn Width="0.9*"
+                                                        Binding="{Binding DisplayDriverVersion}"
+                                                        ElementStyle="{DynamicResource DataTable.CellTextSecondary}"
+                                                        Header="Версия" />
+                                    <DataGridTextColumn Width="0.95*"
+                                                        Binding="{Binding PortName}"
+                                                        ElementStyle="{DynamicResource DataTable.CellTextSecondary}"
+                                                        Header="Порт" />
+                                    <DataGridTemplateColumn Width="0.95*" Header="Состояние">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <controls:StatusBadge Text="{Binding StatusText}"
+                                                                      Tone="{Binding StatusTone}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <controls:EmptyState Grid.Row="1"
+                                                 Description="В системе не зарегистрировано ни одной очереди печати."
+                                                 Icon="{DynamicResource Icon.Printer}"
+                                                 Title="Установленные принтеры не найдены"
+                                                 Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVis}}" />
+
+                            <controls:EmptyState Grid.Row="1"
+                                                 Description="{Binding ErrorMessage}"
+                                                 Icon="{DynamicResource Icon.Alert}"
+                                                 Title="Ошибка чтения очередей печати"
+                                                 Visibility="{Binding HasError, Converter={StaticResource BoolToVis}}">
+                                <Button Command="{Binding RefreshCommand}"
+                                        Content="Повторить"
+                                        controls:Assist.Icon="{DynamicResource Icon.Refresh}" />
+                            </controls:EmptyState>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- Панель подробных сведений об установленном принтере -->
+                <Border Grid.Column="2" Style="{DynamicResource Card}">
+                    <Grid>
+                        <controls:EmptyState Description="Выберите принтер в списке слева, чтобы просмотреть подробные сведения об очереди печати, используемом драйвере и порте."
+                                             Icon="{DynamicResource Icon.Info}"
+                                             Title="Очередь печати не выбрана"
+                                             Visibility="{Binding HasSelectedPrinter, Converter={StaticResource BoolToVis}, ConverterParameter=Invert}" />
+
+                        <StackPanel Visibility="{Binding HasSelectedPrinter, Converter={StaticResource BoolToVis}}">
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Style="{DynamicResource IconTile}">
+                                    <controls:Icon Data="{DynamicResource Icon.Printer}" />
+                                </Border>
+
+                                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock Style="{DynamicResource Text.CardTitle}"
+                                               Text="{Binding SelectedPrinter.Name}" />
+                                    <TextBlock Margin="0,2,0,0"
+                                               Style="{DynamicResource Text.Caption}"
+                                               Text="{Binding SelectedPrinter.KindText}" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Border Style="{DynamicResource Divider}" />
+
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                    <RowDefinition Height="28" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Модель / Очередь" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Text.BodyStrong}" Text="{Binding SelectedPrinter.DisplayModel}" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Производитель" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SelectedPrinter.Manufacturer}" />
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Драйвер" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SelectedPrinter.DriverName}" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Версия драйвера" />
+                                <TextBlock Grid.Row="3" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SelectedPrinter.DisplayDriverVersion}" />
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="INF-файл в системе" />
+                                <TextBlock Grid.Row="4" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SelectedPrinter.InfPath, TargetNullValue='Стандартный'}" />
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Порт" />
+                                <TextBlock Grid.Row="5" Grid.Column="1" Style="{DynamicResource Text.Body}" Text="{Binding SelectedPrinter.PortName}" />
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" Style="{DynamicResource Text.Secondary}" Text="Состояние" />
+                                <controls:StatusBadge Grid.Row="6" Grid.Column="1"
+                                                      Text="{Binding SelectedPrinter.StatusText}"
+                                                      Tone="{Binding SelectedPrinter.StatusTone}" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
