@@ -4,6 +4,7 @@
         xmlns:controls="clr-namespace:PrintCore.Controls"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         Title="PrintCore"
+        Icon="pack://application:,,,/Resources/Branding/printcore.ico"
         Width="1280"
         Height="800"
         MinWidth="980"
@@ -56,10 +57,12 @@
                                 Height="34"
                                 Background="{DynamicResource Brush.Accent}"
                                 CornerRadius="8">
-                            <controls:Icon Width="18"
-                                           Height="18"
-                                           Data="{DynamicResource Icon.Printer}"
-                                           Foreground="{DynamicResource Brush.Text.OnAccent}" />
+                            <Control Width="30"
+                                     Height="30"
+                                     Focusable="False"
+                                     Foreground="{DynamicResource Brush.Text.OnAccent}"
+                                     IsTabStop="False"
+                                     Template="{DynamicResource BrandLogoMarkTemplate}" />
                         </Border>
                         <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
                             <TextBlock FontFamily="{DynamicResource Font.Display}"

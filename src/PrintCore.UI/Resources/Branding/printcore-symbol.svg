@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
+  <!-- Символ PrintCore на прозрачном фоне (для адаптируемых векторных шаблонов) -->
+  <path d="M 22,12 H 41 L 50,21 V 47 A 4,4 0 0 1 46,51 H 22 A 4,4 0 0 1 18,47 V 16 A 4,4 0 0 1 22,12 Z"
+        fill="#2563EB" fill-opacity="0.28" />
+  <path d="M 41,12 V 18 A 3,3 0 0 0 44,21 H 50 Z"
+        fill="#2563EB" fill-opacity="0.52" />
+  <path fill="#2563EB" fill-rule="evenodd"
+        d="M 16,17 A 3,3 0 0 1 19,14 H 33 A 12.5,12.5 0 0 1 33,39 H 24 V 49 A 3,3 0 0 1 21,52 H 19 A 3,3 0 0 1 16,49 Z M 24,21.5 V 31.5 H 32.5 A 5,5 0 0 0 32.5,21.5 Z" />
+</svg>
